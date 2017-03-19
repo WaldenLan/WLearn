@@ -11,6 +11,19 @@
     - Behavior: Add a weight decay item with a decaying parameter $$\lambda$$ to the cost function.
 * Mini-Batch:
 * Stochastic Gradient Descent:
+* top-k error rate:
+    - The proportion of test set examples whose correct label is not among the top-k predictions of the network.
+
+### Tricks
+* A better choice of cost function, known as the cross-entropy cost function
+* Four so-called "regularization" methods (L1 and L2 regularization, dropout, and artificial expansion of the training data), which make our networks better at generalizing beyond the training data
+    - L1 Regularization:
+    - L2 Regularization:
+    - Dropout:
+    - Artificial expansion of the training data:
+    
+* A better method for initializing the weights in the network
+* A set of heuristics to help choose good hyper-parameters for the network.
 
 
 ### Forward Pass Algorithm
