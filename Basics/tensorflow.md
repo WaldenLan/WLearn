@@ -20,3 +20,7 @@
         + Trainable parameters to adjust the performance of the model.
 
 ### MNIST For ML Beginners
+
+* How does TensorFlow handle the overhead to do efficient matrix operation such as with NumPy, which runs the actual operation outside Python and requires lots of data transfer?
+    - TensorFlow also does its heavy lifting outside Python, but it takes things a step further to avoid this overhead. Instead of running a single expensive operation independently from Python, TensorFlow lets us describe a graph of interacting operations that run entirely outside Python. (Approaches like this can be seen in a few machine learning libraries.)
+    - [!!!!] Still problematic, because we always need two data transfer???
