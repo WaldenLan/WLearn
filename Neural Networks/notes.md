@@ -42,7 +42,32 @@
     - How to determine the overfitting point?
         + We get it by refering to the test data prediction accuracy graph instead of the cost graph because what we really care is the accuracy.
     - Detection:
-        + By accuracy visualization: when accuracy on test data stop increasing or the training accuracy also stops.
+        + By accuracy visualization: when accuracy on test data stop increasing (but it may be the case when the training accuracy also stops).
+    - Hold out:
+        + Set a validation datasets separated from the training and test datasets.
+            * Manipulate in a way similar to that on test datasets.
+            * Early stopping: If the accuracy on validation datasets saturated after certain epoches, we can stop the training and adjust our model. But the stopping condition is tricky to set.
+            * Generally, we can think of the validation data as a type of training data that helps us learn good hyper-parameters.
+        + We evaluate the training model on validation datasets to adjust the hyper-parameters such as learning rate, NN structures... Then test our results on the test datasets.
+    - Problems: 
+        - No matter which strategy we use, if we evaluate our model on test datasets, and go back to adjust our model, and do that iteratively, we may trapped into the case which overfits the test datasets. Otherwise, we may need lots of test datasets. Thus it's a difficult and tricky problem to be studied.
+    - Basic approach to reduce the overfitting:
+        - Add more training datasets. But not practical since it's hard to fetch proper datasets in such size in practice.
+* Regularization:
+    - Reduce overfitting even when we have a fixed network and fixed training data.
+    - L2 regularization (weight decay):
+        + Control the compromise between the regularization term and the original cost function.
+        + Link: http://neuralnetworksanddeeplearning.com/chap3.html#regularization
+        + Why it works?
+            * Basically, it adds a weight decay parameter, which restricts the influence of the weight increasing. Also when weight is large, the gradient descent may go in a way too restricted to its original direction. With the decaying parameter, this effect can be reduced.
+            * The weight decaying term makes the regularized model resistant to noise points, and those points won't influence a lot to the final output. Thus the good generalization ability is achieved.
+            * Science perfers simple explanation, and this regularized one is just making things simple, not taking too many efforts to fit the noise points.
+            * No-one has yet developed an entirely convincing theoretical explanation for why regularization helps networks generalize. 
+        + Why we don't include the bias term in L2-regularization?
+            * Having a large bias doesn't make a neuron sensitive to its inputs in the same way as having large weights due to the way we calculate z.
+            * Allowing large biases gives our networks more flexibility in behaviour - in particular, large biases make it easier for neurons to saturate, which is sometimes desirable. [Problematic => b controls the converging speed, w controls the direction of the descent in a subtle way].
+        + One interesting view:
+            * A network with 100 hidden neurons has nearly 80,000 parameters. We have only 50,000 images in our training data. It's like trying to fit an 80,000th degree polynomial to 50,000 data points. By all rights, our network should overfit terribly. And yet, as we saw earlier, such a network actually does a pretty good job generalizing. Why is that the case? It's not well understood. It has been conjectured that "the dynamics of gradient descent learning in multilayer nets has a `self-regularization' effect". [Just empirical, not theoretically proved] 
 
 * Random Initialization of the weight matrix *W* and *b*:
     - Motivation: symmetry breaking
