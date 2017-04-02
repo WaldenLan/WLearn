@@ -59,7 +59,7 @@
         + Control the compromise between the regularization term and the original cost function.
         + Link: http://neuralnetworksanddeeplearning.com/chap3.html#regularization
         + Why it works?
-            * Basically, it adds a weight decay parameter, which restricts the influence of the weight increasing. Also when weight is large, the gradient descent may go in a way too restricted to its original direction. With the decaying parameter, this effect can be reduced.
+            * Basically, it adds a weight decay parameter, which restricts the influence of the weight increasing. Also when weight is large, the gradient descent may go in a way too restricted to its original direction [To be formalized]. With the decaying parameter, this effect can be reduced.
             * The weight decaying term makes the regularized model resistant to noise points, and those points won't influence a lot to the final output. Thus the good generalization ability is achieved.
             * Science perfers simple explanation, and this regularized one is just making things simple, not taking too many efforts to fit the noise points.
             * No-one has yet developed an entirely convincing theoretical explanation for why regularization helps networks generalize. 
@@ -67,7 +67,32 @@
             * Having a large bias doesn't make a neuron sensitive to its inputs in the same way as having large weights due to the way we calculate z.
             * Allowing large biases gives our networks more flexibility in behaviour - in particular, large biases make it easier for neurons to saturate, which is sometimes desirable. [Problematic => b controls the converging speed, w controls the direction of the descent in a subtle way].
         + One interesting view:
-            * A network with 100 hidden neurons has nearly 80,000 parameters. We have only 50,000 images in our training data. It's like trying to fit an 80,000th degree polynomial to 50,000 data points. By all rights, our network should overfit terribly. And yet, as we saw earlier, such a network actually does a pretty good job generalizing. Why is that the case? It's not well understood. It has been conjectured that "the dynamics of gradient descent learning in multilayer nets has a `self-regularization' effect". [Just empirical, not theoretically proved] 
+            * A network with 100 hidden neurons has nearly 80,000 parameters. We have only 50,000 images in our training data. It's like trying to fit an 80,000th degree polynomial to 50,000 data points. By all rights, our network should overfit terribly. And yet, as we saw earlier, such a network actually does a pretty good job generalizing. Why is that the case? It's not well understood. It has been conjectured that "the dynamics of gradient descent learning in multilayer nets has a `self-regularization' effect". [Just empirical, not theoretically proved]
+    - L1 regularization:
+        + Link: http://neuralnetworksanddeeplearning.com/chap3.html#other_techniques_for_regularization
+        + Difference from L2-regularization:
+            * Change the regularization term to $$|w|$$.
+            * The final derivative changes from multiplying a weight decaying factor to deducting a weight decaying term.
+                - So L1-regularization would concentrate on the connections with greater weights while approximately omit those with small weights.
+                    + When a particular weight has a large magnitude, |w|, L1-regularization shrinks the weight much less than L2-regularization does. 
+                    + By contrast, when |w| is small, L1-regularization shrinks the weight much more than L2-regularization.
+                - When w = 0, we just need to take the cost function without the regularization term because in this case, we don't need to shrink the weight.  
+
+* Dropout [Current understanding is naive, to be dived]:
+    - Procedure:
+        + For each iteration, randomly activate some neurons in the hidden layers while close the others. For the final results, we either average them or take certain voting schema.
+        + After each training, we need to adjust the corresponding result to compensate the influence caused by the partiality of hidden neurons.
+    - Principle:
+        + With such method, we actually train lots of different NN's, since each NN can overfit in different overfitting way, doing this reduce the influence caused by overfitting.
+    - Common practice:
+        + A better strategy suggests combining L2-regularization with Dropout.
+    - My point of view:
+        + It reduces the overfitting in an overall-expectation way instead of just focusing on the overfitting influence of each single NN instance (which is like a variance-way).
+        + The dropout reduces the complexity of the NN, and thus reduce the overfitting.
+
+* Artificially expanding the training data:
+    - 
+    
 
 * Random Initialization of the weight matrix *W* and *b*:
     - Motivation: symmetry breaking
@@ -95,7 +120,7 @@
 * A set of heuristics to help choose good hyper-parameters [learning rate & Regularization parameter] for the network.
 
 ### Plan
-* 3.26:     Overall + cross-entropy + L2-regularization
+* [ok] 3.26:     Overall + cross-entropy + L2-regularization
 * 4.2:      NN tuning techniques left
 * 4.9:      Unsupervised Learning Overview + BP diving
 * 4.16:     Autoencoder
