@@ -91,8 +91,12 @@
         + The dropout reduces the complexity of the NN, and thus reduce the overfitting.
 
 * Artificially expanding the training data:
-    - 
-    
+    - Procedure:
+        + Image how the raw datasets are generated, then try to think of any possible factor that would affect the datasets generation.
+        + Add those factors to the raw datasets (eg. graph rotation, hand-writing oscillation, etc.) to expand the original datasets.
+        + Retrain the modal on the new datasets.
+    - Principle:
+        + Increase the diversity of the training datasets, and improve the model generalization ability.
 
 * Random Initialization of the weight matrix *W* and *b*:
     - Motivation: symmetry breaking
@@ -108,22 +112,25 @@
 * A better choice of cost function, known as the cross-entropy cost function
 * Four so-called "regularization" methods (L1 and L2 regularization, dropout, and artificial expansion of the training data), which make our networks better at generalizing beyond the training data
     - L2 Regularization:
-
-
-    ====Next Week====
-
     - L1 Regularization:
     - Dropout:
     - Artificial expansion of the training data:
-    
 * A better method for initializing the weights in the network
 * A set of heuristics to help choose good hyper-parameters [learning rate & Regularization parameter] for the network.
 
 ### Plan
 * [ok] 3.26:     Overall + cross-entropy + L2-regularization
-* 4.2:      NN tuning techniques left
+* [ok] 4.2:      NN tuning techniques left
+* 4.4:      Weight Initialization & hyper-parameters choice
 * 4.9:      Unsupervised Learning Overview + BP diving
 * 4.16:     Autoencoder
+
+
+### Others 
+* More training data can sometimes compensate for differences in the machine learning algorithm used.
+* The correct response to the question "Is algorithm A better than algorithm B?" is really: "What training data set are you using?"
+* It's fine to look for better algorithms, but make sure you're not focusing on better algorithms to the exclusion of *easy wins* getting more or better training data. => Focus on a general problem, not restricted to specific datasets.
+* In Machine Learning, each heuristic is not just a (potential) explanation, it's also a challenge to investigate and understand in more detail.
 
 
 ### Forward Pass Algorithm
