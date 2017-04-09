@@ -18,11 +18,11 @@
 
 ### Progress
 * [x] Neural Networks Fine-tunning Tricks
-* [] Unsupervised Learning
-    - [] Auto-Encoders (ing)
-    - [] PCA (Principal Component Analysis)
-    - [] K-Means Clustering
-    - [] Compressive Sensing
+* [ ] Unsupervised Learning
+    - [ ] Auto-Encoders (ing)
+    - [ ] PCA (Principal Component Analysis)
+    - [ ] K-Means Clustering
+    - [ ] Compressive Sensing
 
 
 ### Reference
